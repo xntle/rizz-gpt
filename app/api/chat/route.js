@@ -23,7 +23,7 @@ const pc = new Pinecone({
 });
 
 // Get Pinecone Index
-const pineconeIndex = pc.Index(""); // Load the index name from environment variables
+const pineconeIndex = pc.Index(process.env.PIPECONE_INDEX_NAME); // Load the index name from environment variables
 
 async function performRAG(conversation) {
     // Extract the relevant part of the conversation history
@@ -41,7 +41,7 @@ async function performRAG(conversation) {
     const queryEmbedding = rawQueryEmbedding.data[0].embedding;
 
     // Query the Pinecone index for top matches
-    const topMatches = await pineconeIndex.namespace("").query({
+    const topMatches = await pineconeIndex.namespace(process.env.PIPECONE_NAMESPACE_NAME).query({
         vector: queryEmbedding,
         topK: 310,
         includeMetadata: true,
