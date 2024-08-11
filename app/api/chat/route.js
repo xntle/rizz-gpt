@@ -9,10 +9,6 @@ const systemPrompt = `You are an AI-powered customer support assistant for Amazo
 4. If you are unable to answer the question, you can ask the user to contact customer service.
 `;
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
 
 // POST function to handle incoming requests
 export async function POST(req) {
