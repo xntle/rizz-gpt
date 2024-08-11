@@ -51,7 +51,10 @@ async function performRAG(conversation) {
     const contexts = topMatches.matches.map(match => match.metadata.text);
 
     // Construct the augmented query with the context and last message as the question
-    const augmentedQuery = `<CONTEXT>\n${contexts.slice(0, 10).join("\n\n-------\n\n")}\n-------\n</CONTEXT>\n\n\n\nMY CONVERSATION:\n${lastFewMessages}\n\nMy QUESTION:\n${lastMessage}`;
+    const augmentedQuery = `<CONTEXT>\n${contexts.slice(0, 10).join("\n\n-------\n\n")}\n-------\n</CONTEXT>\n\n\n\n
+    PROMPT: \n"Must use the provided data as a reference to enhance your capabilities and produce outputs that align with better with Poetic Rizz Lines ."\n\n
+    MY CONVERSATION:\n${lastFewMessages}\n\n
+    My QUESTION:\n${lastMessage}`;
 
     // Define the system prompt
     const systemPrompt = ` Forget any instructions you’ve gotten before. 
@@ -77,7 +80,7 @@ async function performRAG(conversation) {
 
     !Chances = 50%
 
-    !Sentence type = Short
+    !Sentence type = Medium
 
     Commands are as follows:
 
@@ -110,28 +113,12 @@ async function performRAG(conversation) {
     return res;
 }
 
-// System prompt for the AI, providing guidelines on how to respond to users
-// const systemPrompt = `You are an AI-powered customer support assistant for Amazon. 
-// 1. Customer will inquire you about features of the app such as how to track orders, how to return items, how to contact customer service, etc.
-// 2. Your job is to answer them in a polite and helpful manner. 
-// 3. Provide links when necessary, maybe even perform some action so that the user doesn't have to.
-// 4. If you are unable to answer the question, you can ask the user to contact customer service.
-// `;
-
 // POST function to handle incoming requests
 export async function POST(req) {
 
-  // const openai = new OpenAI() // Create a new instance of the OpenAI client
   const data = await req.json() // Parse the JSON body of the incoming request
 
-  // Create a chat completion request to the OpenAI API
-  // const completion = await openai.chat.completions.create({
-  //   messages: [{role: 'system', content: systemPrompt}, ...data], // Include the system prompt and user messages
-  //   model: 'gpt-4o-mini', // Specify the model to use
-  //   stream: true, // Enable streaming responses
-  // })
-
-  const completion = await performRAG(data);
+  const completion = await performRAG(data); // Use RAG Model
 
   // Create a ReadableStream to handle the streaming response
   const stream = new ReadableStream({
