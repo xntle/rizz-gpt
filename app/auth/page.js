@@ -8,7 +8,7 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
 } from "firebase/auth";
-import { auth } from "../firebase/firebase"; // Adjust the path based on your project structure
+import { auth } from "../firebase/firebase"; 
 import { useRouter } from "next/navigation";
 
 // Context for Authentication
@@ -17,7 +17,7 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [userUid, setUserUid] = useState("");
-
+ 
   const googleSignIn = async () => {
     try {
       const provider = new GoogleAuthProvider();
@@ -85,17 +85,28 @@ export default function SignUp() {
         xs={12}
         md={6}
         sx={{
-          backgroundImage: `url('https://giphy.com/gifs/cets-cetsoncreck-ceticatures-uo3AgTGYuESuDw2mTw')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          borderRadius: 2,
           height: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          p: 4,
+          p: 2,
         }}
-      ></Grid>
+      >
+        <video
+          autoPlay
+          loop
+          muted
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            borderRadius: "16px",
+          }}
+        >
+          <source src="/giphy.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </Grid>
 
       <Grid
         item
@@ -110,20 +121,27 @@ export default function SignUp() {
           height: "100%",
         }}
       >
-        <Box sx={{ maxWidth: 400, textAlign: "center" }}>
-          <Typography variant="h4" component="h1" gutterBottom>
-            Welcome to RizzGPT
+        <Box sx={{ maxWidth: 500, textAlign: "center" }}>
+          <Typography
+            variant="h4"
+            component="h1"
+            gutterBottom
+            sx={{ textAlign: "left" }}
+          >
+            RizzGPT
           </Typography>
-          <Typography variant="body1" gutterBottom>
-            Here you can provide a brief explanation about your chatbot, its
-            features, and how it can benefit the users. This is a placeholder
-            text for you to customize.
+          <Typography variant="body1" gutterBottom sx={{ textAlign: "left" }}>
+            Got no rizz? RizzGPT has got you covered. Designed for those who
+            need a little extra help in rizzing. Whether you're looking to
+            impress someone new or just want to enhance your skills, this AI
+            offers clever comebacks and smooth lined to elevate your game. With
+            RizzGPT, you'll always have the perfect thing to say.
           </Typography>
           <Button
             variant="contained"
             color="primary"
             size="large"
-            sx={{ mt: 4 }}
+            sx={{ mt: 4, width: "100%" }}
             onClick={handleSignUp}
           >
             Get Started
