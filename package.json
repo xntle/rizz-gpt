@@ -11,7 +11,10 @@
   "dependencies": {
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
+    "@langchain/openai": "^0.2.6",
+    "@mui/icons-material": "^5.16.6",
     "@mui/material": "^5.16.6",
+    "@pinecone-database/pinecone": "^3.0.0",
     "next": "14.2.5",
     "openai": "^4.55.1",
     "react": "^18",
