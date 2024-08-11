@@ -14,8 +14,10 @@ const systemPrompt = `You are an AI-powered customer support assistant for Amazo
 export async function POST(req) {
   
   const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
+    apiKey: "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",
   });
+
+
   
   const data = await req.json() // Parse the JSON body of the incoming request
 
