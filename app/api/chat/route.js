@@ -1,5 +1,7 @@
+import { appBarClasses } from '@mui/material';
 import { NextResponse } from 'next/server'; // Import NextResponse from Next.js for handling responses
 import OpenAI from 'openai'; // Import OpenAI library for interacting with the OpenAI API
+
 
 // System prompt for the AI, providing guidelines on how to respond to users
 const systemPrompt = `You are an AI-powered customer support assistant for Amazon. 
@@ -9,22 +11,24 @@ const systemPrompt = `You are an AI-powered customer support assistant for Amazo
 4. If you are unable to answer the question, you can ask the user to contact customer service.
 `;
 
+const dotenv = require('dotenv');
+dotenv.config();
 
 // POST function to handle incoming requests
 export async function POST(req) {
   
   const openai = new OpenAI({
-    apiKey: "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",
+    apiKey: process.env.OPENAI_API_KEY,
   });
 
-
+  console.log("API KEY: ", process.env.OPENAI_API_KEY)
   
   const data = await req.json() // Parse the JSON body of the incoming request
 
   // Create a chat completion request to the OpenAI API
   const completion = await openai.chat.completions.create({
     messages: [{role: 'system', content: systemPrompt}, ...data], // Include the system prompt and user messages
-    model: 'gpt-4o-mini', // Specify the model to use
+    model: "gpt-4o-mini",
     stream: true, // Enable streaming responses
   })
 
