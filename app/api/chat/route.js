@@ -8,10 +8,19 @@ const systemPrompt = `You are an AI-powered customer support assistant for Amazo
 3. Provide links when necessary, maybe even perform some action so that the user doesn't have to.
 4. If you are unable to answer the question, you can ask the user to contact customer service.
 `;
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+
 // POST function to handle incoming requests
 export async function POST(req) {
   
-  const openai = new OpenAI() // Create a new instance of the OpenAI client
+  const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+  
   const data = await req.json() // Parse the JSON body of the incoming request
 
   // Create a chat completion request to the OpenAI API
