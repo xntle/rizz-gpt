@@ -10,7 +10,6 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase/firebase"; 
 import { useRouter } from "next/navigation";
-import Script from 'next/script';
 
 // Context for Authentication
 const AuthContext = createContext();
@@ -89,22 +88,6 @@ export default function SignUp() {
 
 
   return (
-    <>
-<Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}');
-        `}
-      </Script>
-
-    
-
     <Grid container sx={{ height: "100vh" }}>
       <Grid
         item
@@ -176,12 +159,12 @@ export default function SignUp() {
             }}}
             onClick={handleSignUp}
 
+
           >
             Get Started
           </Button>
         </Box>
       </Grid>
     </Grid>
-    </>
   );
 }
