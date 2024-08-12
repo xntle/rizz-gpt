@@ -2,7 +2,6 @@
 "use client";
 import { React, useContext, createContext, useState, useEffect } from "react";
 import { Grid, Box, Typography, Button } from "@mui/material";
-import Script from 'next/script';
 import {
   signInWithPopup,
   signOut,
@@ -89,21 +88,6 @@ export default function SignUp() {
 
 
   return (
-    <>
-          <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}');
-        `}
-      </Script>
-
-    
     <Grid container sx={{ height: "100vh" }}>
       <Grid
         item
@@ -174,7 +158,7 @@ export default function SignUp() {
               bgcolor: '#ffecb3' // Lighter background on hover
             }}}
             onClick={handleSignUp}
-            textTransform="none"
+
 
           >
             Get Started
@@ -182,6 +166,5 @@ export default function SignUp() {
         </Box>
       </Grid>
     </Grid>
-    </>
   );
 }

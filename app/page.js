@@ -4,12 +4,8 @@ import { Box, Button, Stack, TextField } from '@mui/material';
 import { useState } from 'react';
 import withAuth from './protectedroute';
 import Navbar from './components/navbar';
-import Script from 'next/script';
-
-
 
 function Home() {
-  
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -68,21 +64,7 @@ function Home() {
   };
 
   return (
-    
     <>
-   <Script
-        strategy="lazyOnload"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
-      />
-      <Script id="google-analytics" strategy="lazyOnload">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}');
-        `}
-      </Script>
-
     <Navbar></Navbar>
       <Box
         width="100vw"
