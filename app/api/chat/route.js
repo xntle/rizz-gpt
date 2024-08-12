@@ -1,3 +1,4 @@
+import { appBarClasses } from '@mui/material';
 import { NextResponse } from 'next/server'; // Import NextResponse from Next.js for handling responses
 import OpenAI from 'openai'; // Import OpenAI library for interacting with the OpenAI API
 import { Pinecone } from '@pinecone-database/pinecone';
