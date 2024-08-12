@@ -4,6 +4,8 @@ import { Box, Button, Stack, TextField } from '@mui/material';
 import { useState } from 'react';
 import withAuth from './protectedroute';
 import Navbar from './components/navbar';
+import { analytics } from './firebase/firebase';
+import { logEvent } from "firebase/analytics"; 
 
 function Home() {
   const [messages, setMessages] = useState([
@@ -19,23 +21,28 @@ function Home() {
 
     setMessages((messages) => [
       ...messages,
-      { role: 'user', content: message },
-      { role: 'assistant', content: '' },
+      { role: "user", content: message },
+      { role: "assistant", content: "" },
     ]);
 
-    setMessage(''); // Clear the input field
+    setMessage(""); // Clear the input field
+
+    // Log the event with Google Analytics
+    logEvent(analytics, "send_message", {
+      content: message,
+    });
 
     try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
+      const response = await fetch("/api/chat", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify([...messages, { role: 'user', content: message }]),
+        body: JSON.stringify([...messages, { role: "user", content: message }]),
       });
 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
 
       const reader = response.body.getReader();
@@ -55,10 +62,14 @@ function Home() {
         });
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
       setMessages((messages) => [
         ...messages,
-        { role: 'assistant', content: "I'm sorry, but I encountered an error. Please try again later." },
+        {
+          role: "assistant",
+          content:
+            "I'm sorry, but I encountered an error. Please try again later.",
+        },
       ]);
     }
   };
