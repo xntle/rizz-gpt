@@ -14,4 +14,4 @@ And More..
 Thai An Le - AI Integration, UI Design\
 Manal Afzal - Main Chat Interface, Sign Up and UI Design\
 Joan Duran - RAG Implementation, LLM Orchestration\
-Sibgha Zeeshan - Homepage, User Auth, UI Design\
+Sibgha Zeeshan - Homepage, User Auth, UI Design
