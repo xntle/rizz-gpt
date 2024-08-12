@@ -135,11 +135,11 @@ export default function SignUp() {
             variant="h4"
             component="h1"
             gutterBottom
-            sx={{ textAlign: "left" }}
+            sx={{ textAlign: "left", fontFamily: 'Helvetica', fontWeight: 'bold' }}
           >
             RizzGPT
           </Typography>
-          <Typography variant="body1" gutterBottom sx={{ textAlign: "left" }}>
+          <Typography variant="body1" gutterBottom sx={{ textAlign: "left", fontFamily: 'Helvetica'}}>
             Got no rizz? RizzGPT has got you covered. Designed for those who
             need a little extra help in rizzing. Whether you're looking to
             impress someone new or just want to enhance your skills, this AI
@@ -150,8 +150,16 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             size="large"
-            sx={{ mt: 4, width: "100%" }}
+            sx={{ mt: 4, width: "100%", bgcolor: '#ffd43b', color: '#000', 
+            fontWeight: 'bold', 
+            textTransform: 'none',
+            fontFamily: 'Helvetica',            
+            '&:hover': {
+              bgcolor: '#ffecb3' // Lighter background on hover
+            }}}
             onClick={handleSignUp}
+            textTransform="none"
+
           >
             Get Started
           </Button>
