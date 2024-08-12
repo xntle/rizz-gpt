@@ -2,8 +2,10 @@
 
 import { Box, Button, Stack, TextField } from '@mui/material';
 import { useState } from 'react';
+import withAuth from './protectedroute';
+import Navbar from './components/navbar';
 
-export default function Home() {
+function Home() {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -63,6 +65,7 @@ export default function Home() {
 
   return (
     <>
+    <Navbar></Navbar>
       <Box
         width="100vw"
         height="100vh"
@@ -125,3 +128,4 @@ export default function Home() {
     </>
   );
 }
+export default withAuth(Home);

@@ -17,7 +17,22 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [userUid, setUserUid] = useState("");
- 
+  const [loading, setLoading] = useState(true); 
+  
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser || null);
+        setUserUid(currentUser?.uid || "");
+      } else {
+        setUser("");
+        setUserUid("");
+      }
+      setLoading(false); // Set loading to false after checking authentication state
+    });
+    return () => unsubscribe();
+  }, []);
+
   const googleSignIn = async () => {
     try {
       const provider = new GoogleAuthProvider();
@@ -40,21 +55,8 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        setUser(currentUser);
-        setUserUid(currentUser.uid);
-      } else {
-        setUser("");
-        setUserUid("");
-      }
-    });
-    return () => unsubscribe();
-  }, []);
-
   return (
-    <AuthContext.Provider value={{ user, googleSignIn, logOut, userUid }}>
+    <AuthContext.Provider value={{ user, googleSignIn, logOut, userUid, loading }}>
       {children}
     </AuthContext.Provider>
   );
@@ -67,6 +69,13 @@ export const UserAuth = () => {
 export default function SignUp() {
     const { user, googleSignIn } = UserAuth();
   const router = useRouter();
+
+  useEffect(() => {
+    if (user) {
+      router.push("/"); 
+    }
+  }, [user, router]);
+
 
   const handleSignUp = async () => {
     try {
