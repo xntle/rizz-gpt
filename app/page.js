@@ -6,10 +6,7 @@ import withAuth from './protectedroute';
 import Navbar from './components/navbar';
 import Script from 'next/script';
 
-
-
 function Home() {
-  
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -68,13 +65,13 @@ function Home() {
   };
 
   return (
-    
     <>
-   <Script
-        strategy="lazyOnload"
+
+    <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
+        strategy="afterInteractive"
       />
-      <Script id="google-analytics" strategy="lazyOnload">
+      <Script id="google-analytics" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -82,6 +79,7 @@ function Home() {
           gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}');
         `}
       </Script>
+
 
     <Navbar></Navbar>
       <Box
