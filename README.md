@@ -1,5 +1,10 @@
 # Got no rizz? RizzGPT has got you covered
 
+
+
+https://github.com/user-attachments/assets/e5a5ef17-40d1-4c09-90bd-37aecef1c102
+
+
 Got no rizz? RizzGPT has got you covered. Designed for those who need a little extra help in rizzing. Whether you're looking to impress someone new or just want to enhance your skills, this AI offers clever comebacks and smooth lined to elevate your game. With RizzGPT, you'll always have the perfect thing to say.
 
 ## Features
